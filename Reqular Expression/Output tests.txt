@@ -1,0 +1,17 @@
+Test 1
+Enter a string between 1-10 characters: xxxAbx
+Enter a pattern between 1-10 characters: x..Abx
+Match
+
+
+Test 2
+Enter a string between 1-10 characters: aaabbb
+Enter a pattern between 1-10 characters: ***bbb
+Match
+
+Test 3
+Enter a string between 1-10 characters: aaa
+Enter a pattern between 1-10 characters: a.
+No Match
+
+
