@@ -53,22 +53,21 @@ int main(void)
 }
 
 //isMatching function
-int isMatching(char string[], char pattern[], int n, int m)
+int isMatching(char string[], char pattern[], int str, int ptr)
 {
-	// If string and pattern reach their end,
-	// return true
-	if (m < 0 && n < 0)
+	// return true if the end has reached
+	if (ptr < 0 && str < 0)
 		return TRUE;
 
 	// If only pattern reaches its end, return false
-	else if (m < 0)
+	else if (ptr < 0)
 		return FALSE;
 
-	// If only input string reaches its end, return true
-	// if remaining characters in the pattern are all '*'
-	else if (n < 0)
+	// return true if rest of the charracters are '*' 
+	// and only if the string is at its end
+	else if (str < 0)
 	{
-		for (int i = 0; i <= m; i++)
+		for (int i = 0; i <= ptr; i++)
 			if (pattern[i] != '*')
 				return 0;
 
@@ -76,29 +75,28 @@ int isMatching(char string[], char pattern[], int n, int m)
 	}
 
 	// If the sub-problem is encountered for the first time
-	if (lookup[m][n] == -1)
+	if (lookup[ptr][str] == -1)
 	{
-		if (pattern[m] == '*')
+		if (pattern[ptr] == '*')
 		{
-			// 1. * matches with current characters in input string.
-			// Here we will move to next character in the string
+			// 1. * matching with the current character in the input string
+			// move to the next char
 
-			// 2. Ignore * and move to next character in the pattern
-			lookup[m][n] = isMatching(string, pattern, n - 1, m) ||
-				isMatching(string, pattern, n, m - 1);
+			// ignoring the '*' and moving on to the next charracter
+			lookup[ptr][str] = isMatching(string, pattern, str - 1, ptr) ||
+				isMatching(string, pattern, str, ptr - 1);
 		}
 		else
 		{
-			// If the current character is not a wildcard character, it
-			// should match with current character in the input string
-			if (pattern[m] != '.' && pattern[m] != string[n])
-				lookup[m][n] = 0;
+			// matching with the current character in the input string if the corrent character is not '.'
+			if (pattern[ptr] != '.' && pattern[ptr] != string[str])
+				lookup[ptr][str] = 0;
 
-			// check if pattern[0..m-1] matches string[0..n-1]
+			// check if pattern matches the string
 			else
-				lookup[m][n] = isMatching(string, pattern, n - 1, m - 1);
+				lookup[ptr][str] = isMatching(string, pattern, str - 1, ptr - 1);
 		}
 	}
 
-	return lookup[m][n];
+	return lookup[ptr][str];
 }
