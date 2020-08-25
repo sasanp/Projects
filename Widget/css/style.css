@@ -1,0 +1,48 @@
+
+/*
+Author: Sasan Pournouri
+*/
+
+/*setting the direction which the stars light up from right to left*/
+.rating-widget 
+{
+    unicode-bidi: bidi-override;
+   direction: rtl;
+}
+/*star adjustments */
+.rating-widget > span 
+{
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+/*Hovering on the nth star will turn stars black starting from 1st star to that nth star*/
+.rating-widget > span:hover:before,
+.rating-widget > span:hover ~ span:before 
+{
+     content: "\2605";
+     position: absolute;
+     color: gray;
+    
+}
+
+/*clicking on the nth star will turn stars black starting from 1st star to that nth star*/
+.rating-widget > span:active:before,
+.rating-widget > span:active ~ span::before, .rating-widget > span.rated ~ span::before, .rating-widget > span.rated::before
+{
+    content: "\2605";
+    position: absolute;
+    color:black;
+}
+/*body and the border adjustment*/
+body
+{
+    padding:100px;
+    width: 200px;
+    border: 3px solid rgba(2, 31, 58, 0.151);
+    text-align: center;
+    padding: 40px;
+    
+    
+}
+
