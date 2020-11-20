@@ -1,0 +1,10 @@
+# .htaccess 
+# ------------
+# the .htaccess file customizes how the server will behave
+# comments in .htaccess begin with a number sign (like this line does)
+# ErrorDocument <errorNumber> <path>
+# Direct 'Page not found' errors to a specified page			
+ErrorDocument 404 /404.html
+
+# Server will use British Columbia time zone
+SetEnv TZ Canada/Pacific
